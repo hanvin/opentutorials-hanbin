@@ -62,6 +62,7 @@ $topic = mysql_fetch_assoc($result);
             }
             article {
                 float: left;
+                padding-top: 20px;
             }
             footer {
                 clear: both;
@@ -78,9 +79,7 @@ $topic = mysql_fetch_assoc($result);
             h1 {
                 font-size: 1.4em;
             }
-            .description{
-                width:500px;
-            }
+          
         </style>
     </head>
   
@@ -94,7 +93,6 @@ $topic = mysql_fetch_assoc($result);
                 <input type="button" value="white" onclick="document.getElementById('body').className='white'" />
             </div>
             <nav>
-            	<a href="add.php">토픽추가</a>
                 <ul>
                     <?php
                     $sql="select id,title from topic";
@@ -102,22 +100,30 @@ $topic = mysql_fetch_assoc($result);
                     while($row=mysql_fetch_assoc($result)) {
                     echo "
                     <li>
-                        <a href=\"?id={$row['id']}\">{$row['title']}</a></li>";
+                        <a href=\"http://localhost/opentutorials/index.php?id={$row['id']}\">{$row['title']}</a></li>";
                         }
                         ?>
                 </ul>
             </nav>
+            <h1>추가할 토픽을 작성하세요</h1>
             <article>
-                <?php
-                if(!empty($topic)){
-                ?>
-                <h2><?=$topic['title']?></h2>
-                <div class="description">
-                    <?=$topic['description']?>
-                </div>
-                <?php
-                }
-                ?>
+				<form action="add_process.php" method="post">
+					<table>
+					<tr>
+						<td>제목</td>
+						<td> <input type="text" size="40" name="title"/></td>
+					</tr>
+					<tr>
+						<td>본문</td>
+						<td> <textarea name="description" cols="50" rows="10"></textarea></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td align="center">
+							<input type="submit" value="제출"/></td>
+					</tr>
+					</table>
+				</form>
             </article>
         </div>
     </body>
