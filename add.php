@@ -100,7 +100,7 @@ $topic = mysql_fetch_assoc($result);
                     while($row=mysql_fetch_assoc($result)) {
                     echo "
                     <li>
-                        <a href=\"http://localhost/opentutorials/index.php?id={$row['id']}\">{$row['title']}</a></li>";
+                        <a href=\"http://".$_SERVER['SERVER_NAME']."/opentutorials/index.php?id={$row['id']}\">{$row['title']}</a></li>";
                         }
                         ?>
                 </ul>
